@@ -1,6 +1,6 @@
 # MVC
 
-The component library for the MVC-application
+The component library for creating an MVC-application
 
 Status: **work in progress**
 
