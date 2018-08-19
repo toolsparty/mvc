@@ -6,8 +6,8 @@ import (
 	"github.com/pkg/errors"
 )
 
-// should be context
-type Action func(ctx interface{}) error
+// v is should be context
+type Action func(v interface{}) error
 
 type Actions map[string]Action
 
