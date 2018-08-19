@@ -6,11 +6,13 @@ import (
 	"io"
 )
 
+type ViewParams map[string]interface{}
+
 type View interface {
 	Component
 
 	InitViews(path string) error
-	Render(w io.Writer, tpl string, params map[string]interface{}) error
+	Render(w io.Writer, tpl string, params ViewParams) error
 }
 
 type views map[string]View
