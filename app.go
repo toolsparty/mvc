@@ -72,6 +72,14 @@ func (app *App) View(name string) (View, error) {
 	return nil, errors.New("view '" + name + "' not found")
 }
 
+func (app *App) Model(name string) (Model, error) {
+	if model, exists := app.models[name]; exists {
+		return model, nil
+	}
+
+	return nil, errors.New("model '" + name + "' not found")
+}
+
 func CreateApp(config *AppConfig) (*App, error) {
 	app := &App{
 		config:      config.Config,
