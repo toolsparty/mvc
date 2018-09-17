@@ -11,7 +11,6 @@ type ViewParams map[string]interface{}
 type View interface {
 	Component
 
-	InitViews(path string) error
 	Render(w io.Writer, tpl string, params ViewParams) error
 }
 
