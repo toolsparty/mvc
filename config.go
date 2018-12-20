@@ -23,6 +23,7 @@ type Config interface {
 type AppConfig struct {
 	Config Config
 	Router Router
+	Logger LogFunc
 
 	Controllers []Controller
 	Models      []Model
