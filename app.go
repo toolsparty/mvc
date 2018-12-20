@@ -2,7 +2,6 @@ package mvc
 
 import (
 	"context"
-	"log"
 
 	"github.com/pkg/errors"
 )
@@ -10,8 +9,10 @@ import (
 type App struct {
 	ctx context.Context
 
-	config      Config
-	router      Router
+	config Config
+	router Router
+	logger LogFunc
+
 	controllers controllers
 	models      models
 	views       views
@@ -33,17 +34,12 @@ func (app *App) Actions() Actions {
 }
 
 func (app *App) Log(args ...interface{}) {
-	for _, arg := range args {
-		if app.debug {
-			_, isError := arg.(error)
-			if isError {
-				log.Println("Error:", arg)
-				continue
-			}
-		}
-
-		log.Println(args...)
+	if app.logger != nil {
+		app.logger(args)
+		return
 	}
+
+	defaultLogFn(args)
 }
 
 func (app *App) SetDebug(debug bool) {
