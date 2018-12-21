@@ -35,7 +35,7 @@ func (app *App) Actions() Actions {
 
 func (app *App) Log(args ...interface{}) {
 	if app.logger != nil {
-		app.logger(args)
+		app.logger(args...)
 		return
 	}
 
