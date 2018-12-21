@@ -39,7 +39,7 @@ func (app *App) Log(args ...interface{}) {
 		return
 	}
 
-	defaultLogFn(args)
+	defaultLogFn(args...)
 }
 
 func (app *App) SetDebug(debug bool) {
@@ -78,8 +78,10 @@ func (app *App) Model(name string) (Model, error) {
 
 func CreateApp(config *AppConfig) (*App, error) {
 	app := &App{
-		config:      config.Config,
-		router:      config.Router,
+		config: config.Config,
+		router: config.Router,
+		logger: config.Logger,
+
 		controllers: make(controllers, len(config.Controllers)),
 		models:      make(models, len(config.Models)),
 		views:       make(views, len(config.Views)),
