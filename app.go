@@ -60,20 +60,20 @@ func (app *App) Run() error {
 	return nil
 }
 
-func (app *App) View(name string) (View, error) {
+func (app *App) View(name string) View {
 	if view, exists := app.views[name]; exists {
-		return view, nil
+		return view
 	}
 
-	return nil, errors.New("view '" + name + "' not found")
+	return nil
 }
 
-func (app *App) Model(name string) (Model, error) {
+func (app *App) Model(name string) Model {
 	if model, exists := app.models[name]; exists {
-		return model, nil
+		return model
 	}
 
-	return nil, errors.New("model '" + name + "' not found")
+	return nil
 }
 
 func CreateApp(config *AppConfig) (*App, error) {
