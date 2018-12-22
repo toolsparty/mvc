@@ -1,6 +1,9 @@
 package mvc
 
-import "time"
+import (
+	"time"
+	"context"
+)
 
 // app config interface
 // see github.com/spf13/viper
@@ -21,6 +24,8 @@ type Config interface {
 }
 
 type AppConfig struct {
+	Context context.Context
+
 	Config Config
 	Router Router
 	Logger LogFunc

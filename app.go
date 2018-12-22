@@ -78,6 +78,8 @@ func (app *App) Model(name string) Model {
 
 func CreateApp(config *AppConfig) (*App, error) {
 	app := &App{
+		ctx: config.Context,
+
 		config: config.Config,
 		router: config.Router,
 		logger: config.Logger,
