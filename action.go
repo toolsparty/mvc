@@ -29,7 +29,8 @@ func (list *Actions) add(controllers ...Controller) error {
 					fmt.Sprintf("action %T is exists", action),
 				)
 			}
-			c[path] = action
+			action = controller.BeforeAction(action)
+			c[path] = controller.AfterAction(action)
 		}
 	}
 

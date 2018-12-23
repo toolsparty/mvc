@@ -9,8 +9,10 @@ import (
 type Controller interface {
 	Component
 
-	Actions() (Actions, error)
 	Init() error
+	Actions() (Actions, error)
+	BeforeAction(action Action) Action
+	AfterAction(action Action) Action
 }
 
 type controllers map[string]Controller
@@ -66,4 +68,12 @@ func (BaseController) Actions() (Actions, error) {
 
 func (BaseController) Init() error {
 	return nil
+}
+
+func (BaseController) BeforeAction(action Action) Action {
+	return action
+}
+
+func (BaseController) AfterAction(action Action) Action {
+	return action
 }
