@@ -90,17 +90,7 @@ func CreateApp(config *AppConfig) (*App, error) {
 		actions:     make(Actions),
 	}
 
-	err := app.controllers.add(config.Controllers...)
-	if err != nil {
-		return nil, errors.Wrap(err, "adding controllers failed")
-	}
-
-	err = app.actions.add(config.Controllers...)
-	if err != nil {
-		return nil, errors.Wrap(err, "adding controllers actions failed")
-	}
-
-	err = app.models.add(config.Models...)
+	err := app.models.add(config.Models...)
 	if err != nil {
 		return nil, errors.Wrap(err, "adding models failed")
 	}
@@ -108,6 +98,21 @@ func CreateApp(config *AppConfig) (*App, error) {
 	err = app.views.add(config.Views...)
 	if err != nil {
 		return nil, errors.Wrap(err, "adding views failed")
+	}
+
+	err = app.controllers.add(config.Controllers...)
+	if err != nil {
+		return nil, errors.Wrap(err, "adding controllers failed")
+	}
+
+	err = app.controllers.init(app)
+	if err != nil {
+		return nil, errors.Wrap(err, "init controllers failed")
+	}
+
+	err = app.actions.add(config.Controllers...)
+	if err != nil {
+		return nil, errors.Wrap(err, "adding controllers actions failed")
 	}
 
 	return app, nil
