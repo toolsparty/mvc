@@ -60,6 +60,14 @@ func (app *App) Run() error {
 	return nil
 }
 
+func (app *App) Controller(name string) Controller {
+	if c, exists := app.controllers[name]; exists {
+		return c
+	}
+
+	return nil
+}
+
 func (app *App) View(name string) View {
 	if view, exists := app.views[name]; exists {
 		return view
